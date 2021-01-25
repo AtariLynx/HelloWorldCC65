@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
+    <ClCompile Include="makefile" />
   </ItemGroup>
   <ItemGroup>
     <None Include="helloworld.lnx" />
