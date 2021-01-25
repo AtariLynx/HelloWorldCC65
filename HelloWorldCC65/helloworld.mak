@@ -1,7 +1,7 @@
 !INCLUDE <lynxcc65.mak>
 
 target = helloworld.lnx
-objects = main.o lynx-160-102-16.o lynx-stdjoy.o
+objects = main.o
 
 $(target) : $(objects)
 	$(CL) -t $(SYS) -o $@ -m helloworld.map $(objects) lynx.lib
