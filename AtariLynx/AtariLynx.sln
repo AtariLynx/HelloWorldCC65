@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorldCC65", "HelloWorldCC65\HelloWorldCC65.vcxproj", "{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F893C7C3-5411-422B-BE67-624891D737B1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}.Debug|x64.ActiveCfg = Debug|x64
+		{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}.Debug|x64.Build.0 = Debug|x64
+		{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}.Debug|x86.ActiveCfg = Debug|Win32
+		{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}.Debug|x86.Build.0 = Debug|Win32
+		{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}.Release|x64.ActiveCfg = Release|x64
+		{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}.Release|x64.Build.0 = Release|x64
+		{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}.Release|x86.ActiveCfg = Release|Win32
+		{DFB405FC-EBC4-4B0D-B287-D99AE302ABED}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBB6BDC2-1834-48A0-AF54-F55A97F088FC}
+	EndGlobalSection
+EndGlobal
