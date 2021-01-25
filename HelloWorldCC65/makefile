@@ -1,13 +1,13 @@
 # Include paths we may need for compilations
+ifndef PREFIX
+	PREFIX=/usr/share
+endif
 ifeq ($(CC65_HOME),)
-	CC65_HOME=/usr/share/cc65
+	CC65_HOME=$(PREFIX)/cc65
 endif
-ifeq ($(CC65_INC),)
-	CC65_INC=$(CC65_HOME)/include
-endif
-ifeq ($(CA65_INC),)
-	CA65_INC=$(CC65_HOME)/asminc
-endif
+CC65_INC=$(CC65_HOME)/include
+CC65_LIB=$(CC65_HOME)/lib
+CA65_INC=$(CC65_HOME)/asminc
 
 # Compiling for Atari Lynx system
 SYS=lynx
@@ -22,7 +22,6 @@ SPRPCK=sprpck
 CP=cp
 RM=rm -f
 ECHO=echo
-TOUCH=touch
 
 CODE_SEGMENT=CODE
 DATA_SEGMENT=DATA
@@ -38,19 +37,21 @@ SEGMENTS=--code-name $(CODE_SEGMENT) \
 AFLAGS=-I $(CA65_INC) -t $(SYS)
 
 # Flags for C-code compiler
-CFLAGS=-I . -t $(SYS) --add-source -O -Or -Cl -Os
+CFLAGS=-I $(CC65_INC) -t $(SYS) --add-source -O -Or -Cl -Os
 
 target = helloworld.lnx 
-objects = main.o lynx-160-102-16.o lynx-stdjoy.o
+objects = main.o
 
 $(target) : $(objects)
 	$(CL) -t $(SYS) -o $@ -m helloworld.map $(objects) lynx.lib 
+
+.SUFFIXES: .o .c .s .asm .bmp
 
 # Rule for making a *.o file out of a *.c file
 %.o: %.c
 	$(CC) $(CFLAGS) $(SEGMENTS) -o $(patsubst %c, %s, $(notdir $<)) $<
 	$(AS) -o $@ $(AFLAGS) $(*).s
-	#$(RM) $*.s
+	$(RM) $*.s
 
 # Rule for making a *.o file out of a *.s or *.asm file
 %.o: %.s
@@ -70,15 +71,15 @@ $(target) : $(objects)
 	$(RM) $*.spr
 
 lynx-stdjoy.o:
-	$(CP) $(CC65_HOME)/target/lynx/drv/joy/$*.joy .
-	$(CO) --code-label _lynxjoy $*.joy
+	$(CP) $(CC65_HOME)/target/$(SYS)/drv/joy/$*.joy .
+	$(CO) --code-label _$(SYS)joy $*.joy
 	$(AS) -o $@ $(AFLAGS) $*.s
 	$(RM) $*.joy
 	$(RM) $*.s
 
 lynx-160-102-16.o:
-	$(CP) $(CC65_HOME)/target/lynx/drv/tgi/$*.tgi .
-	$(CO) --code-label _lynxtgi -o $*.s $*.tgi
+	$(CP) $(CC65_HOME)/target/$(SYS)/drv/tgi/$*.tgi .
+	$(CO) --code-label _$(SYS)tgi -o $*.s $*.tgi
 	$(AS) -o $@ $(AFLAGS) $*.s
 	$(RM) $*.tgi
 	$(RM) $*.s
@@ -89,5 +90,7 @@ clean :
 	$(RM) $(objects)
 	$(RM) $(target)
 	$(RM) *.spr
+	$(RM) *.tgi
+	$(RM) *.joy
 	$(RM) *.s
 	$(RM) *.pal
